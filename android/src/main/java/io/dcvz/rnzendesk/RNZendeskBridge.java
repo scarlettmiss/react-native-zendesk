@@ -19,6 +19,7 @@ import zendesk.core.AnonymousIdentity;
 import zendesk.core.Identity;
 import zendesk.core.JwtIdentity;
 import zendesk.core.Zendesk;
+import zendesk.support.CustomField;
 import zendesk.support.Support;
 import zendesk.support.guide.HelpCenterActivity;
 import zendesk.support.request.RequestActivity;
