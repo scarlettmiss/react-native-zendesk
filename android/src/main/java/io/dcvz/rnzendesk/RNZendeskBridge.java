@@ -116,8 +116,11 @@ public class RNZendeskBridge extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void showArticle(ReadableMap options) {
-        ViewArticleActivity.builder(options.getString("articleId"))
-            .withContactUsButtonVisible(!(options.hasKey("hideContactSupport") && options.getBoolean("hideContactSupport")))
-            .show(this);                            
+        Intent intent =  ViewArticleActivity.builder(Long.parseLong(options.getString("articleId")))
+                .withContactUsButtonVisible(!(options.hasKey("hideContactSupport") && options.getBoolean("hideContactSupport")))
+                .intent(getReactApplicationContext());
+        
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getReactApplicationContext().startActivity(intent);
     }
 }
