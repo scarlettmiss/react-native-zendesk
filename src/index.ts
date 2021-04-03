@@ -30,6 +30,11 @@ interface HelpCenterOptions {
   hideContactSupport?: boolean
 }
 
+interface ViewArticleOptions {
+  hideContactSupport?: boolean
+  articleId?: string
+}
+
 export function showHelpCenter(options: HelpCenterOptions) {
   RNZendesk.showHelpCenter(options)
 }
@@ -44,4 +49,8 @@ export function showNewTicket(options: NewTicketOptions) {
 
 export function showTicketList() {
   RNZendesk.showTicketList()
+}
+
+export function showArticle(options: ViewArticleOptions) {
+  RNZendesk.showArticle(options)
 }

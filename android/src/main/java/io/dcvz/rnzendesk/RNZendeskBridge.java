@@ -24,6 +24,7 @@ import zendesk.support.Support;
 import zendesk.support.guide.HelpCenterActivity;
 import zendesk.support.request.RequestActivity;
 import zendesk.support.requestlist.RequestListActivity;
+import zendesk.support.guide.ViewArticleActivity;
 
 public class RNZendeskBridge extends ReactContextBaseJavaModule {
 
@@ -111,5 +112,12 @@ public class RNZendeskBridge extends ReactContextBaseJavaModule {
     public void showTicketList() {
         RequestListActivity.builder()
             .show(getReactApplicationContext());
+    }
+
+    @ReactMethod
+    public void showArticle(ReadableMap options) {
+        ViewArticleActivity.builder(options.getString("articleId"))
+            .withContactUsButtonVisible(!(options.hasKey("hideContactSupport") && options.getBoolean("hideContactSupport")))
+            .show(this);                            
     }
 }

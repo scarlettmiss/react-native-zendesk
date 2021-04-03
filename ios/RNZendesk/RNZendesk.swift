@@ -119,4 +119,23 @@ class RNZendesk: RCTEventEmitter {
             UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: true)
         }
     }
+
+    @objc(showArticle:)
+    func showArticle(with options: [String: Any]) {
+        DispatchQueue.main.async {
+            let articleUiConfig = ArticleUiConfiguration()
+            if let hideContactSupport = options["hideContactSupport"] as? Bool {
+                articleUiConfig.showContactOptions = !hideContactSupport
+            } else {
+                articleUiConfig.showContactOptions = false
+            }
+
+            guard let articleId = options["articleId"] as? String else { return }
+
+            let articleController = HelpCenterUi.buildHelpCenterArticleUi(withArticleId: articleId, andConfigs: [articleUiConfig])
+            
+            let nvc = UINavigationController(rootViewController: articleController)
+            UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: true)
+        }
+    }
 }
