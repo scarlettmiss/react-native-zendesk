@@ -34,8 +34,14 @@ export function showHelpCenter(options: HelpCenterOptions) {
   RNZendesk.showHelpCenter(options)
 }
 
+interface CustomField {
+  fieldId : number
+  value : string
+}
+
 interface NewTicketOptions {
   tags?: string[]
+  custom_fields: CustomField[]
 }
 
 export function showNewTicket(options: NewTicketOptions) {
